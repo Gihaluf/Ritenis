@@ -22,15 +22,19 @@ public class Velosipeds {
 	public int noteiktRitenaD() {
 		return ritenaD;
 	}
+	
 	public int noteiktSedeklaPoz() {
 		return sedeklaPoz;
 	}
+	
 	public String noteiktRaz() {
 		return razotajs;
 	}
+	
 	public double noteiktCenu() {
 		return cena;
 	}
+	
 	public double kustiba() {
 		Random rand = new Random();
 		double celsM, laiksS;
@@ -41,11 +45,26 @@ public class Velosipeds {
 	public double noteiktAtr() {
 		return atrumsMS;
 	}
+	
 	public String izvadit() {
 		return "Riteņa ražotājs: "+noteiktRaz()+
 				"\nRiteņa cena: "+noteiktCenu()+
 				"\nRiteņa leilums collās: "+noteiktRitenaD()+
 				"\nIEstatītais sēdekļa garums: "+noteiktSedeklaPoz()+
 				"\nKustības ātrums: "+noteiktAtr()+"m/s";
+	}
+	
+	public void iestatitSedeklaPoz(int pozicija) {
+		sedeklaPoz = pozicija;
+	}
+	public void mities(int minienuSk) {
+		atrumsMS += noteiktAtr() + (0.15 * minienuSk);
+	}
+	public void bremzet(int berze) {
+		if(noteiktAtr() > 0) {
+			atrumsMS -= (noteiktAtr() *0.55)*berze;
+			if(atrumsMS < 0)
+				atrumsMS = 0;
+		}
 	}
 }
