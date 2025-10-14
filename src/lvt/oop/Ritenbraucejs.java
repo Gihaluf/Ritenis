@@ -46,7 +46,9 @@ public class Ritenbraucejs {
 				switch(izvele) {
 				case "Velosipēds":
 					Velosipeds velosipeds = new Velosipeds(ritenaD, sedeklaPoz, cena, razotajs);
+					riteni.add(velosipeds);
 					break;
+					
 				case "Kalnu velosipēds":
 					int Atrums = Parbaude.skaitlaParbaudeI("Cik ritenim būs ātrumi ", 1, 8);
 				
@@ -62,7 +64,9 @@ public class Ritenbraucejs {
 					
 					KalnuRitenis kRitenis = new KalnuRitenis(Atrums, a,
 							ritenaD, sedeklaPoz, cena, razotajs);
+					riteni.add(kRitenis);	
 					break;
+					
 				case "Bērnu velosipēds":
 					izvele = (String)JOptionPane.showInputDialog(null, "Vai būs papildriteņi?",
 							"Izvēlne", JOptionPane.QUESTION_MESSAGE, null
@@ -84,6 +88,7 @@ public class Ritenbraucejs {
 					
 					BernuRitenis bRitenis = new BernuRitenis(rit, zvan,
 							ritenaD, sedeklaPoz, cena, razotajs);
+					riteni.add(bRitenis);
 					break;
 				}
 			}
