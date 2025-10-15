@@ -27,19 +27,13 @@ public class Ritenbraucejs {
 			
 			switch(izvelesID) {
 			case 0:
-				/*Izveidot iespēju izvēlēties vienu
-				 * no trim ritenu veidiem
-				 * Savadīt prasītās atribūtu vērtības
-				 * Izveidot attiecīgo riteņa objektu
-				 * objektu ievietot Arraylsit
-				 */
 				izvele = (String) JOptionPane.showInputDialog(null, "Izvēlies riteni",
 						"Izvēlne", JOptionPane.QUESTION_MESSAGE, null
 						,veidi, veidi[0]);
 				if (izvele == null)break;
 				
 				int ritenaD = Parbaude.skaitlaParbaudeI("Ievadi riteņa diametru", 12, 29);
-				int sedeklaPoz = Parbaude.skaitlaParbaudeI("Ievadi sēdeķla poziciju", 1, 30);
+				int sedeklaPoz = Parbaude.iestatitSedekli();
 				double cena = Parbaude.skaitlaParbaudeD("Ievadi cenu", 1);
 				String razotajs = Parbaude.virknesParbaude("Ievadi ražotāju");
 				
@@ -91,6 +85,11 @@ public class Ritenbraucejs {
 					riteni.add(bRitenis);
 					break;
 				}
+				break;
+			case 1:
+				if(riteni.size() < 0) break;
+				
+				break;
 			}
 		}while(izvelesID != 5);
 		
