@@ -32,7 +32,7 @@ public class Ritenbraucejs {
 						,veidi, veidi[0]);
 				if (izvele == null)break;
 				
-				int ritenaD = Parbaude.skaitlaParbaudeI("Ievadi riteņa diametru", 12, 29);
+				int ritenaD = Parbaude.iestatitAtrumu();
 				int sedeklaPoz = Parbaude.iestatitSedekli();
 				double cena = Parbaude.skaitlaParbaudeD("Ievadi cenu", 1);
 				String razotajs = Parbaude.virknesParbaude("Ievadi ražotāju");
