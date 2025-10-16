@@ -19,32 +19,7 @@ public class Parbaude {
 		}while(!Pattern.matches("^[\\p{L} .]+$", virkne));
 		return virkne;
 	}
-	public static int skaitlaParbaudeI(String zinojums, int min, int max) {
-		String ievade;
-		int skaitlis;
-		while(true) {
-			ievade = JOptionPane.showInputDialog(null, zinojums, 
-					"Datu ievade", JOptionPane.INFORMATION_MESSAGE); 
-			if(ievade == null)
-				return -1;
-			try {
-				skaitlis = Integer.parseInt(ievade);
-				if(skaitlis < min && skaitlis > max) {
-					JOptionPane.showMessageDialog(null, 
-					"Norādīts nederīgs intervāls", "Nekorekti dati",
-					JOptionPane.WARNING_MESSAGE);
-					continue;
-				}
-				
-				return skaitlis;
-			}catch(NumberFormatException e) {
-				JOptionPane.showMessageDialog(null,
-					"Netika ievadīts vesels skaitlis", "Nekorekti dati",
-					JOptionPane.WARNING_MESSAGE);
-			}
-		}
-	}
-		public static Double skaitlaParbaudeD(String zinojums, int min) {
+		public static Double skaitlaParbaude(String zinojums, double min, double max) {
 			String ievade;
 			Double skaitlis;
 			while(true) {
@@ -54,9 +29,9 @@ public class Parbaude {
 					return -1.0;
 				try {
 					skaitlis = Double.valueOf(ievade);
-					if(skaitlis < min) {
+					if(skaitlis < min || skaitlis > max) {
 						JOptionPane.showMessageDialog(null, 
-						"Norādīts nederīgs intervāls", "Nekorekti dati",
+						"Norādīts nederīgs skaitlis", "Nekorekti dati",
 						JOptionPane.WARNING_MESSAGE);
 						continue;
 					}
@@ -64,7 +39,7 @@ public class Parbaude {
 					return skaitlis;
 				}catch(NumberFormatException e) {
 					JOptionPane.showMessageDialog(null,
-						"Netika ievadīts vesels skaitlis", "Nekorekti dati",
+						"Netika ievadīts pareizs skaitlis", "Nekorekti dati",
 						JOptionPane.WARNING_MESSAGE);
 				}
 			}
@@ -92,10 +67,10 @@ public class Parbaude {
 			JFrame jf = new JFrame();
 			JOptionPane jop = new JOptionPane();
 			JSlider js = bidjosla(jop, 6);
-			jop.setMessage(new Object[] {"Kuru ātrumu iestatīt?", js});
+			jop.setMessage(new Object[] {"Cik augsti iestatīt sēdeklit?", js});
 			jop.setMessageType(JOptionPane.QUESTION_MESSAGE);
 			jop.setOptionType(JOptionPane.OK_CANCEL_OPTION);
-			JDialog jd = jop.createDialog(jf, "Ātruma iestatīšana");
+			JDialog jd = jop.createDialog(jf, "Sēdekļa iestatīšana");
 			jd.setVisible(true);
 			return (int)jop.getInputValue();
 		}
@@ -103,7 +78,7 @@ public class Parbaude {
 		static int iestatitAtrumu() {
 			JFrame jf = new JFrame();
 			JOptionPane jop = new JOptionPane();
-			JSlider js = bidjosla(jop, 6);
+			JSlider js = bidjosla(jop, 8);
 			jop.setMessage(new Object[] {"Kuru ātrumu iestatīt?", js});
 			jop.setMessageType(JOptionPane.QUESTION_MESSAGE);
 			jop.setOptionType(JOptionPane.OK_CANCEL_OPTION);
