@@ -1,5 +1,7 @@
 package lvt.oop;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 import javax.swing.JDialog;
@@ -9,7 +11,7 @@ import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-public class Parbaude {
+public class Metodes {
 	public static String virknesParbaude(String zinojums) {
 		String virkne;
 		do {
@@ -86,5 +88,18 @@ public class Parbaude {
 			jd.setVisible(true);
 			return (int)jop.getInputValue();
 		}
+	static int ritenaIzvele(ArrayList <Object> riteni) {
+		String[] rSaraksts = new String[riteni.size()] ;
+		for(int i=0; i<rSaraksts.length; i++) {
+			rSaraksts[i] = 
+				(((Velosipeds)riteni.get(i)).noteiktRaz())+" "+
+				(((Velosipeds)riteni.get(i)).noteiktCenu())+"EUR";
+		}
+		
+		String izveletais = (String)JOptionPane.showInputDialog(null,
+				"Izvēlies riteni: ", "Izvēle", JOptionPane.QUESTION_MESSAGE, null,
+				rSaraksts,rSaraksts[0]);
+		
+		return Arrays.asList(rSaraksts).indexOf(izveletais);
+	}
 }
-

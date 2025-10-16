@@ -35,10 +35,10 @@ public class Ritenbraucejs {
 						,veidi, veidi[0]);
 				if (izvele == null)break;
 				
-				double ritenaD = Parbaude.skaitlaParbaude("Ievadi riteņa diametru", 12, 29);
-				int sedeklaPoz = Parbaude.iestatitSedekli();
-				double cena = Parbaude.skaitlaParbaude("Ievadi cenu", 1.0, 9999.99);
-				String razotajs = Parbaude.virknesParbaude("Ievadi ražotāju");
+				double ritenaD = Metodes.skaitlaParbaude("Ievadi riteņa diametru", 12, 29);
+				int sedeklaPoz = Metodes.iestatitSedekli();
+				double cena = Metodes.skaitlaParbaude("Ievadi cenu", 1.0, 9999.99);
+				String razotajs = Metodes.virknesParbaude("Ievadi ražotāju");
 				
 				switch(izvele) {
 				case "Velosipēds":
@@ -48,7 +48,7 @@ public class Ritenbraucejs {
 					break;
 					
 				case "Kalnu velosipēds":
-					int Atrums = Parbaude.iestatitAtrumu();
+					int Atrums = Metodes.iestatitAtrumu();
 				
 					izvele = (String)JOptionPane.showInputDialog(null, "Vai būs atsperes",
 							"Izvēlne", JOptionPane.QUESTION_MESSAGE, null
@@ -94,8 +94,7 @@ public class Ritenbraucejs {
 				break;
 			case 1:
 				if(riteni.size() > 0) { 
-					JOptionPane.showMessageDialog(null, "",
-							"Kļūda", JOptionPane.ERROR_MESSAGE);
+					int ritID = Metodes.ritenaIzvele(riteni);
 					
 				}else {
 					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens ritenis",
@@ -121,7 +120,7 @@ public class Ritenbraucejs {
 				JScrollPane sp = new JScrollPane(ta);
 				sp.setVerticalScrollBarPolicy(
 						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-				JOptionPane.showMessageDialog(ta, sp, "LVT",
+				JOptionPane.showMessageDialog(ta, sp, "Riteņi",
 						JOptionPane.PLAIN_MESSAGE);
 				}
 				break;
