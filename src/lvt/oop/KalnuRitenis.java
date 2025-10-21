@@ -23,7 +23,7 @@ public class KalnuRitenis extends Velosipeds{
 		return "Riteņa ražotājs: "+noteiktRaz()+
 				"\nRiteņa cena: "+noteiktCenu()+
 				"\nRiteņa leilums collās: "+noteiktRitenaD()+
-				"\nIEstatītais sēdekļa garums: "+noteiktSedeklaPoz()+
+				"\nIestatītais sēdekļa garums: "+noteiktSedeklaPoz()+
 				"\nKustības ātrums: "+noteiktAtr()+"m/s"+
 				"\nIestatītais ātrums: "+noteiktIestatAtr()+
 				"\nPapildus amortizācija: "+((atsperes)? "Ir": "Nav");

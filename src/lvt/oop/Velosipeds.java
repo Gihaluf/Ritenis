@@ -50,7 +50,7 @@ public class Velosipeds implements Comparable<Velosipeds>{
 		return "Riteņa ražotājs: "+noteiktRaz()+
 				"\nRiteņa cena: "+noteiktCenu()+
 				"\nRiteņa leilums collās: "+noteiktRitenaD()+
-				"\nIEstatītais sēdekļa garums: "+noteiktSedeklaPoz()+
+				"\nIestatītais sēdekļa garums: "+noteiktSedeklaPoz()+
 				"\nKustības ātrums: "+noteiktAtr()+"m/s";
 	}
 	

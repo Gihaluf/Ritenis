@@ -161,70 +161,115 @@ public class Ritenbraucejs {
 				}
 				break;
 			case 4:
-				if(riteni.size() > 0) {
-					int kurs = Metodes.ritenaIzvele(riteni);
-					String[] metodes = {"Noteikt riteņa izmēru",
-							"Iestatīt sēdekli", "Noteikt kustības ātrumu",
-							"Mīties", "Bremzēt", "Noteikt iestatīto ātrumu",
-							"Pārslēgt ātrumu", "Palīgriteņi", "Zvaniņš"
-					};
-					
-					izvele = (String) JOptionPane.showInputDialog(null,
-							"Izvēlies metodi", "Izvēle", 
-							JOptionPane.INFORMATION_MESSAGE, null,
-							metodes, metodes[0]);
-					if(izvele == null)break;
-					
-					izvelesID = Arrays.asList(metodes).indexOf(izvele);
-					
-					switch(izvelesID) {
-					case 0:
-						JOptionPane.showMessageDialog(null,
-								"Riteņa izmērs: "+((Velosipeds)riteni.get(kurs)).noteiktRitenaD(), "Ievade", 
-								JOptionPane.INFORMATION_MESSAGE);
-						break;
-					case 1:
-						sedeklaPoz = Metodes.iestatitSedekli();
-						((Velosipeds)riteni.get(kurs)).iestatitSedeklaPoz(sedeklaPoz);
-						JOptionPane.showMessageDialog(null,
-								"Veiksmīgi nomainīta sēdekļa pozīcija", "Paziņojums", 
-								JOptionPane.INFORMATION_MESSAGE);
-						break;
-					case 2:
-						JOptionPane.showMessageDialog(null,
-								"Kustības ātrums: "+((Velosipeds)riteni.get(kurs)).noteiktAtr()+"km/h", "Paziņojums", 
-								JOptionPane.INFORMATION_MESSAGE);
-						break;
-					case 3:
-						((Velosipeds)riteni.get(kurs)).mities(kurs);
-						JOptionPane.showMessageDialog(null,
-								"Tu sāc mīties ātrāk", "Paziņojums", 
-								JOptionPane.INFORMATION_MESSAGE);
-						break;
-					case 4:
-						break;
-					case 5:
-						break;
-					case 6:
-						break;
-					case 7:
-						break;
-					case 8:
-						if(riteni.get(kurs) instanceof BernuRitenis) {
-							((BernuRitenis)riteni.get(kurs)).zvanitZvaninu();
-						}else {
-							JOptionPane.showMessageDialog(null, 
-									"Šim riteņa veidam nav zvaniņš", "Paziņojums",
-									JOptionPane.ERROR_MESSAGE);
+				do{
+					if(riteni.size() > 0) {
+						int kurs = Metodes.ritenaIzvele(riteni);
+						String[] metodes = {"Noteikt riteņa izmēru",
+								"Iestatīt sēdekli", "Noteikt kustības ātrumu",
+								"Mīties", "Bremzēt", "Noteikt iestatīto ātrumu",
+								"Pārslēgt ātrumu", "Palīgriteņi", "Zvaniņš",
+								"Atgriezties"
+						};
+						
+						izvele = (String) JOptionPane.showInputDialog(null,
+								"Izvēlies metodi", "Izvēle", 
+								JOptionPane.INFORMATION_MESSAGE, null,
+								metodes, metodes[0]);
+						if(izvele == null)break;
+						
+						izvelesID = Arrays.asList(metodes).indexOf(izvele);
+						
+						
+						switch(izvelesID) {
+						case 0:
+							JOptionPane.showMessageDialog(null,
+									"Riteņa izmērs: "+((Velosipeds)riteni.get(kurs)).noteiktRitenaD(), "Ievade", 
+									JOptionPane.INFORMATION_MESSAGE);
+							break;
+						case 1:
+							sedeklaPoz = Metodes.iestatitSedekli();
+							((Velosipeds)riteni.get(kurs)).iestatitSedeklaPoz(sedeklaPoz);
+							JOptionPane.showMessageDialog(null,
+									"Veiksmīgi nomainīta sēdekļa pozīcija", "Paziņojums", 
+									JOptionPane.INFORMATION_MESSAGE);
+							break;
+						case 2:
+							JOptionPane.showMessageDialog(null,
+									"Kustības ātrums: "+((Velosipeds)riteni.get(kurs)).noteiktAtr()+"km/h", "Paziņojums", 
+									JOptionPane.INFORMATION_MESSAGE);
+							break;
+						case 3:
+							((Velosipeds)riteni.get(kurs)).mities(kurs);
+							JOptionPane.showMessageDialog(null,
+									"Tu sāc mīties ātrāk!", "Paziņojums", 
+									JOptionPane.INFORMATION_MESSAGE);
+							break;
+						case 4:
+							String berze = JOptionPane.showInputDialog(null, "Ievadi berzi", "Ievade",
+									JOptionPane.INFORMATION_MESSAGE);
+							int b = Integer.parseInt(berze);
+							
+							((Velosipeds)riteni.get(kurs)).bremzet(b);
+							JOptionPane.showMessageDialog(null,
+									"Tu nobremzē!", "Paziņojums", 
+									JOptionPane.INFORMATION_MESSAGE);
+							break;
+						case 5:
+							if(riteni.get(kurs) instanceof KalnuRitenis) {
+								JOptionPane.showMessageDialog(null,
+										"Riteņa ātrums: "+((KalnuRitenis)riteni.get(kurs)).noteiktAtr(), "Ievade", 
+										JOptionPane.INFORMATION_MESSAGE);
+							}else {
+								JOptionPane.showMessageDialog(null, 
+										"Šim riteņa veidam nav ātrumi", "Paziņojums",
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							break;
+						case 6:
+							if(riteni.get(kurs) instanceof KalnuRitenis) {
+								int Atrums = Metodes.iestatitAtrumu();
+								((KalnuRitenis)riteni.get(kurs)).parslegtAtr(Atrums);;
+								JOptionPane.showMessageDialog(null,
+										"Veiksmīgi nomainīts ātrums", "Paziņojums", 
+										JOptionPane.INFORMATION_MESSAGE);
+							}else {
+								JOptionPane.showMessageDialog(null, 
+										"Šim riteņa veidam nav ātrumi", "Paziņojums",
+										JOptionPane.ERROR_MESSAGE);
+								break;
+							}
+							break;
+						case 7:
+							if(riteni.get(kurs) instanceof BernuRitenis) {
+								((BernuRitenis)riteni.get(kurs)).darbArPaligrit(false);;
+							}else {
+								JOptionPane.showMessageDialog(null, 
+										"Šim riteņa veidam nav zvaniņš", "Paziņojums",
+										JOptionPane.ERROR_MESSAGE);
+							}
+							break;
+						case 8:
+							if(riteni.get(kurs) instanceof BernuRitenis) {
+								((BernuRitenis)riteni.get(kurs)).zvanitZvaninu();
+							}else {
+								JOptionPane.showMessageDialog(null, 
+										"Šim riteņa veidam nav zvaniņš", "Paziņojums",
+										JOptionPane.ERROR_MESSAGE);
+							}
+							break;
+						case 9:
+							JOptionPane.showMessageDialog(null, "Atgriežamies",
+									"Paziņojums", JOptionPane.INFORMATION_MESSAGE);
+							break;
+						
 						}
+					}else {
+						JOptionPane.showMessageDialog(null, "Nav ievadīts neviens ritenis",
+								"Kļūda", JOptionPane.ERROR_MESSAGE);
 						break;
-					
 					}
-				}else {
-					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens ritenis",
-							"Kļūda", JOptionPane.ERROR_MESSAGE);
-					break;
-				}
+				}while(izvelesID!=9);
 				break;
 			case 5:
 				JOptionPane.showMessageDialog(null, "Programma apturēta", "Apturēta",

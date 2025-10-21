@@ -56,7 +56,7 @@ public class BernuRitenis extends Velosipeds{
 		return "Riteņa ražotājs: "+noteiktRaz()+
 				"\nRiteņa cena: "+noteiktCenu()+
 				"\nRiteņa leilums collās: "+noteiktRitenaD()+
-				"\nIEstatītais sēdekļa garums: "+noteiktSedeklaPoz()+
+				"\nIestatītais sēdekļa garums: "+noteiktSedeklaPoz()+
 				"\nKustības ātrums: "+noteiktAtr()+"m/s"+
 				"\nZvaniņš ir "+((zvanins)? "Ir": "Nav")+
 				"\nPalīgriteņi: "+((paligriteni)? "Ir": "Nav");
