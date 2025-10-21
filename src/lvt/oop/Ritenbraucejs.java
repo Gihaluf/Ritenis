@@ -35,10 +35,10 @@ public class Ritenbraucejs {
 						,veidi, veidi[0]);
 				if (izvele == null)break;
 				
-				double ritenaD = Metodes.skaitlaParbaude("Ievadi riteņa diametru", 12, 29);
+				double ritenaD = Metodes.skaitlaParbaude("Ievadi riteņa diametru", 12, 29, "29");
 				int sedeklaPoz = Metodes.iestatitSedekli();
-				double cena = Metodes.skaitlaParbaude("Ievadi cenu", 1.0, 9999.99);
-				String razotajs = Metodes.virknesParbaude("Ievadi ražotāju");
+				double cena = Metodes.skaitlaParbaude("Ievadi cenu", 1.0, 9999.99, "1000");
+				String razotajs = Metodes.virknesParbaude("Ievadi ražotāju", "Intars");
 				
 				switch(izvele) {
 				case "Velosipēds":
@@ -96,6 +96,9 @@ public class Ritenbraucejs {
 				if(riteni.size() > 0) { 
 					int ritID = Metodes.ritenaIzvele(riteni);
 					
+					riteni.remove(ritID);
+					JOptionPane.showMessageDialog(null, "Veiksmīgi izdzēsts ritenis",
+							"Paziņojums", JOptionPane.INFORMATION_MESSAGE);
 				}else {
 					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens ritenis",
 							"Kļūda", JOptionPane.ERROR_MESSAGE);
@@ -105,6 +108,27 @@ public class Ritenbraucejs {
 				break;
 				
 			case 2:
+				if(riteni.size() > 0) { 
+					String str = "Riteņu skaits: "+riteni.size()+
+							"\n_________________________________\n";
+					for(int i=0; i<riteni.size(); i++) {
+						str += ((Velosipeds)riteni.get(i)).izvadit()+
+							"\n_________________________________\n";
+					}
+					
+					JTextArea ta = new JTextArea (str, 10, 40);
+					ta.setEditable(false);
+					JScrollPane sp = new JScrollPane(ta);
+					sp.setVerticalScrollBarPolicy(
+							ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+					JOptionPane.showMessageDialog(ta, sp, "Atzīmes",
+							JOptionPane.PLAIN_MESSAGE);
+				}else {
+					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens ritenis",
+							"Kļūda", JOptionPane.ERROR_MESSAGE);
+					break;
+				}
+				
 				break;
 			case 3:
 				break;

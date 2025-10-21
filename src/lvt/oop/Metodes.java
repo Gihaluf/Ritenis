@@ -12,25 +12,25 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class Metodes {
-	public static String virknesParbaude(String zinojums) {
+	public static String virknesParbaude(String zinojums, String noklusejums) {
 		String virkne;
 		do {
-			virkne = JOptionPane.showInputDialog(zinojums);
+			virkne = JOptionPane.showInputDialog(zinojums, noklusejums);
 			if(virkne == null)
 				return null;
 		}while(!Pattern.matches("^[\\p{L} .]+$", virkne));
 		return virkne;
 	}
-		public static Double skaitlaParbaude(String zinojums, double min, double max) {
+		public static Double skaitlaParbaude(String zinojums, double min, double max, String noklusejums) {
 			String ievade;
 			Double skaitlis;
 			while(true) {
-				ievade = JOptionPane.showInputDialog(null, zinojums, 
-						"Datu ievade", JOptionPane.INFORMATION_MESSAGE); 
+				ievade = (String)JOptionPane.showInputDialog(null, zinojums, 
+						"Datu ievade", JOptionPane.INFORMATION_MESSAGE, null, null, noklusejums); 
 				if(ievade == null)
 					return -1.0;
 				try {
-					skaitlis = Double.valueOf(ievade);
+					skaitlis = Double.parseDouble(ievade);
 					if(skaitlis < min || skaitlis > max) {
 						JOptionPane.showMessageDialog(null, 
 						"Norādīts nederīgs skaitlis", "Nekorekti dati",
