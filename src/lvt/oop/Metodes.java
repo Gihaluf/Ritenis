@@ -21,7 +21,7 @@ public class Metodes {
 		}while(!Pattern.matches("^[\\p{L} .]+$", virkne));
 		return virkne;
 	}
-		public static Double skaitlaParbaude(String zinojums, double min, double max, String noklusejums) {
+		public static double skaitlaParbaude(String zinojums, double min, double max, String noklusejums) {
 			String ievade;
 			Double skaitlis;
 			while(true) {

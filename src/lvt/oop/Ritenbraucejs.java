@@ -179,7 +179,8 @@ public class Ritenbraucejs {
 						
 						izvelesID = Arrays.asList(metodes).indexOf(izvele);
 						
-						
+						if(izvelesID == -1)break;
+		
 						switch(izvelesID) {
 						case 0:
 							JOptionPane.showMessageDialog(null,
@@ -199,17 +200,17 @@ public class Ritenbraucejs {
 									JOptionPane.INFORMATION_MESSAGE);
 							break;
 						case 3:
-							((Velosipeds)riteni.get(kurs)).mities(kurs);
+							double minSk = Metodes.skaitlaParbaude("Cik reizes tu mīsies", 1.0, 10.0, "3.0");
+							((Velosipeds)riteni.get(kurs)).mities((int)minSk);
 							JOptionPane.showMessageDialog(null,
 									"Tu sāc mīties ātrāk!", "Paziņojums", 
 									JOptionPane.INFORMATION_MESSAGE);
 							break;
 						case 4:
-							String berze = JOptionPane.showInputDialog(null, "Ievadi berzi", "Ievade",
-									JOptionPane.INFORMATION_MESSAGE);
-							int b = Integer.parseInt(berze);
+							double berze = Metodes.skaitlaParbaude("Berze", 0.0, 1.0, "1.0");
 							
-							((Velosipeds)riteni.get(kurs)).bremzet(b);
+							
+							((Velosipeds)riteni.get(kurs)).bremzet((int)berze);
 							JOptionPane.showMessageDialog(null,
 									"Tu nobremzē!", "Paziņojums", 
 									JOptionPane.INFORMATION_MESSAGE);
@@ -217,7 +218,7 @@ public class Ritenbraucejs {
 						case 5:
 							if(riteni.get(kurs) instanceof KalnuRitenis) {
 								JOptionPane.showMessageDialog(null,
-										"Riteņa ātrums: "+((KalnuRitenis)riteni.get(kurs)).noteiktAtr(), "Ievade", 
+										"Riteņa ātrums: "+((KalnuRitenis)riteni.get(kurs)).noteiktIestatAtr(), "Ievade", 
 										JOptionPane.INFORMATION_MESSAGE);
 							}else {
 								JOptionPane.showMessageDialog(null, 
