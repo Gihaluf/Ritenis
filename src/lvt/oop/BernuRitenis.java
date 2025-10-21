@@ -41,7 +41,7 @@ public class BernuRitenis extends Velosipeds{
 	UnsupportedAudioFileException, IOException, 
 	LineUnavailableException{
 		if(zvanins) {
-			File f = new File(".//audio"+"ring.wav");
+			File f = new File(".//audio//"+"ring.wav");
 			AudioInputStream ais = AudioSystem.getAudioInputStream(f.toURI().toURL());
 			Clip c = AudioSystem.getClip();
 			c.open(ais);

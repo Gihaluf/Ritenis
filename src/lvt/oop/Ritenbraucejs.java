@@ -1,8 +1,13 @@
 package lvt.oop;
 
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -10,7 +15,7 @@ import javax.swing.ScrollPaneConstants;
 
 public class Ritenbraucejs {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MalformedURLException, UnsupportedAudioFileException, IOException, LineUnavailableException {
 		String izvele;
 		int izvelesID;
 		String[] darbibas = {"Jauns ritenis", "Noņemt riteni",
@@ -131,21 +136,94 @@ public class Ritenbraucejs {
 				
 				break;
 			case 3:
+				if(riteni.size() > 0) {
+					String atb = (String) JOptionPane.showInputDialog(null,
+							"Kārtot riteņus pēc cenas augoši?", "Izvēle",
+							JOptionPane.INFORMATION_MESSAGE, null, 
+							atbilde, atbilde[0]);
+					if(atb != null) {
+						if(atb.equals("Jā")) {
+							riteni.sort(null);
+							JOptionPane.showMessageDialog(null, 
+									"Riteņi sakārtoti augoši!", "Kārtošana",
+									JOptionPane.INFORMATION_MESSAGE);
+						}else {
+							riteni.sort(Collections.reverseOrder());
+							JOptionPane.showMessageDialog(null, 
+									"Riteņi sakārtoti dilstoši!", "Kārtošana",
+									JOptionPane.INFORMATION_MESSAGE);
+						}
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens ritenis",
+							"Kļūda", JOptionPane.ERROR_MESSAGE);
+					break;
+				}
 				break;
 			case 4:
-				String str = "";
-				if(riteni.size()>0) {
-				for(int i=0; i<riteni.size(); i++) {
+				if(riteni.size() > 0) {
+					int kurs = Metodes.ritenaIzvele(riteni);
+					String[] metodes = {"Noteikt riteņa izmēru",
+							"Iestatīt sēdekli", "Noteikt kustības ātrumu",
+							"Mīties", "Bremzēt", "Noteikt iestatīto ātrumu",
+							"Pārslēgt ātrumu", "Palīgriteņi", "Zvaniņš"
+					};
 					
+					izvele = (String) JOptionPane.showInputDialog(null,
+							"Izvēlies metodi", "Izvēle", 
+							JOptionPane.INFORMATION_MESSAGE, null,
+							metodes, metodes[0]);
+					if(izvele == null)break;
 					
-				}
-				JTextArea ta = new JTextArea (str, 10, 40);
-				ta.setEditable(false);
-				JScrollPane sp = new JScrollPane(ta);
-				sp.setVerticalScrollBarPolicy(
-						ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-				JOptionPane.showMessageDialog(ta, sp, "Riteņi",
-						JOptionPane.PLAIN_MESSAGE);
+					izvelesID = Arrays.asList(metodes).indexOf(izvele);
+					
+					switch(izvelesID) {
+					case 0:
+						JOptionPane.showMessageDialog(null,
+								"Riteņa izmērs: "+((Velosipeds)riteni.get(kurs)).noteiktRitenaD(), "Ievade", 
+								JOptionPane.INFORMATION_MESSAGE);
+						break;
+					case 1:
+						sedeklaPoz = Metodes.iestatitSedekli();
+						((Velosipeds)riteni.get(kurs)).iestatitSedeklaPoz(sedeklaPoz);
+						JOptionPane.showMessageDialog(null,
+								"Veiksmīgi nomainīta sēdekļa pozīcija", "Paziņojums", 
+								JOptionPane.INFORMATION_MESSAGE);
+						break;
+					case 2:
+						JOptionPane.showMessageDialog(null,
+								"Kustības ātrums: "+((Velosipeds)riteni.get(kurs)).noteiktAtr()+"km/h", "Paziņojums", 
+								JOptionPane.INFORMATION_MESSAGE);
+						break;
+					case 3:
+						((Velosipeds)riteni.get(kurs)).mities(kurs);
+						JOptionPane.showMessageDialog(null,
+								"Tu sāc mīties ātrāk", "Paziņojums", 
+								JOptionPane.INFORMATION_MESSAGE);
+						break;
+					case 4:
+						break;
+					case 5:
+						break;
+					case 6:
+						break;
+					case 7:
+						break;
+					case 8:
+						if(riteni.get(kurs) instanceof BernuRitenis) {
+							((BernuRitenis)riteni.get(kurs)).zvanitZvaninu();
+						}else {
+							JOptionPane.showMessageDialog(null, 
+									"Šim riteņa veidam nav zvaniņš", "Paziņojums",
+									JOptionPane.ERROR_MESSAGE);
+						}
+						break;
+					
+					}
+				}else {
+					JOptionPane.showMessageDialog(null, "Nav ievadīts neviens ritenis",
+							"Kļūda", JOptionPane.ERROR_MESSAGE);
+					break;
 				}
 				break;
 			case 5:
